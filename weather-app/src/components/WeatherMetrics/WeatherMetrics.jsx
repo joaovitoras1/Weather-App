@@ -1,4 +1,4 @@
-import { weatherData } from '@/utils/weatherMock'
+import { weatherData } from '@/utils/weatherMock.js'
 import MetricCard from '@/components/WeatherMetrics/MetricCard/MetricCard.jsx'
 
 const metricInfo = [

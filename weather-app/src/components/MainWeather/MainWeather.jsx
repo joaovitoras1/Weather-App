@@ -1,5 +1,5 @@
-import { weatherData } from '../../utils/weatherMock'
-import { getWeatherIcon } from '../../utils/getWeatherIcon'
+import { weatherData } from '@/utils/weatherMock.js'
+import { getWeatherIcon } from '@/utils/getWeatherIcon.js'
 
 function MainWeather() {
     

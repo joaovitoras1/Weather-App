@@ -1,11 +1,11 @@
-import iconDrizzle from '../assets/weather-icons/icon-drizzle.webp'
-import iconFog from '../assets/weather-icons/icon-fog.webp'
-import iconOvercast from '../assets/weather-icons/icon-overcast.webp'
-import iconPartlyCloudy from '../assets/weather-icons/icon-partly-cloudy.webp'
-import iconRain from '../assets/weather-icons/icon-rain.webp'
-import iconSnow from '../assets/weather-icons/icon-snow.webp'
-import iconStorm from '../assets/weather-icons/icon-storm.webp'
-import iconSunny from '../assets/weather-icons/icon-sunny.webp'
+import iconDrizzle from '@/assets/weather-icons/icon-drizzle.webp'
+import iconFog from '@/assets/weather-icons/icon-fog.webp'
+import iconOvercast from '@/assets/weather-icons/icon-overcast.webp'
+import iconPartlyCloudy from '@/assets/weather-icons/icon-partly-cloudy.webp'
+import iconRain from '@/assets/weather-icons/icon-rain.webp'
+import iconSnow from '@/assets/weather-icons/icon-snow.webp'
+import iconStorm from '@/assets/weather-icons/icon-storm.webp'
+import iconSunny from '@/assets/weather-icons/icon-sunny.webp'
 
 export function getWeatherIcon(code) {
     if(code === 0) return {icon: iconSunny, description: "Sunny"};
