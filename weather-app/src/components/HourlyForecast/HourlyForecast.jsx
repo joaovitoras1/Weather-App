@@ -1,16 +1,13 @@
 import { useState } from 'react';
 
-import { weatherData } from '@/utils/weatherMock.js'
-
 import HourlyCard from '@/components/HourlyForecast/HourlyCard/HourlyCard.jsx'
 import Dropdown from '@/components/UI/Dropdown/Dropdown.jsx'
 
-const { time, temperature_2m, weather_code } = weatherData.hourly
-
-const date = new Date(weatherData.current.time)
-const currentDay = date.toLocaleDateString("en-US", { weekday: "long" })
-
-function HourlyForecast() {
+function HourlyForecast({data}) {
+    const { time, temperature_2m, weather_code } = data.hourly
+    
+    const date = new Date(data.current.time)
+    const currentDay = date.toLocaleDateString("en-US", { weekday: "long" })
 
     const [day, setDay] = useState(currentDay)
     const [open, setOpen] = useState(false)
@@ -29,7 +26,7 @@ function HourlyForecast() {
         return formattedDate === day
     })
 
-    const weekDays = weatherData.daily.time.map((days) => {
+    const weekDays = data.daily.time.map((days) => {
         const formatDays = new Date(days)
         const formattedDays = formatDays.toLocaleDateString("en-US", { weekday: "long" })
         return formattedDays

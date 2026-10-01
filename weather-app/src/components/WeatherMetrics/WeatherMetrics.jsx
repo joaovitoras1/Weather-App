@@ -1,14 +1,13 @@
-import { weatherData } from '@/utils/weatherMock.js'
 import MetricCard from '@/components/WeatherMetrics/MetricCard/MetricCard.jsx'
 
-const metricInfo = [
-    {label: "Feels Like", value: weatherData.current.apparent_temperature}, 
-    {label: "Humidity", value: weatherData.current.relative_humidity_2m}, 
-    {label: "Wind", value: weatherData.current.wind_speed_10m}, 
-    {label: "Precipitation", value: weatherData.current.precipitation}
-]
+function WeatherMetrics({data}) {
+    const metricInfo = [
+        {label: "Feels Like", value: data.current.apparent_temperature}, 
+        {label: "Humidity", value: data.current.relative_humidity_2m}, 
+        {label: "Wind", value: data.current.wind_speed_10m}, 
+        {label: "Precipitation", value: data.current.precipitation}
+    ]
 
-function WeatherMetrics() {
     return (
         <div>
             <ul>

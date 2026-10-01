@@ -3,11 +3,7 @@ import { getWeatherIcon } from '@/utils/getWeatherIcon.js'
 function DailyCard({time, dailyCode, minTemp, maxTemp}) {
 
     const date = new Date(time)
-    const options = {
-        weekday: "short"
-    }
-
-    const formattedDay = date.toLocaleDateString("en-US", options)
+    const formattedDay = date.toLocaleDateString("en-US", {weekday: "short"})
 
     const dayWeatherIcon = getWeatherIcon(dailyCode)
 

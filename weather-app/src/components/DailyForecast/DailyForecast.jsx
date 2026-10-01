@@ -1,9 +1,8 @@
-import { weatherData } from '@/utils/weatherMock.js'
 import DailyCard from '@/components/DailyForecast/DailyCard/DailyCard.jsx'
 
-const { time, weather_code, temperature_2m_max, temperature_2m_min } = weatherData.daily
+function DailyForecast({data}) {
+    const { time, weather_code, temperature_2m_max, temperature_2m_min } = data.daily
 
-function DailyForecast() {
     return (
         <div>
             <ul>
