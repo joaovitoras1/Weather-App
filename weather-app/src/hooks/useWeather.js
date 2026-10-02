@@ -20,12 +20,7 @@ export default function useWeather() {
         }
     }
 
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            async function(position) {
-                const latitude = position.coords.latitude
-                const longitude = position.coords.longitude
-
+    async function fetchWeatherData(latitude, longitude) {
                 setStatus("loading")
                 const result = await searchData(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,precipitation&timezone=America%2FSao_Paulo`)
 
@@ -35,13 +30,21 @@ export default function useWeather() {
                 } else {
                     setStatus("error")
                 }
+    }
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                fetchWeatherData(position.coords.latitude, position.coords.longitude)
             },
-            function(error) {
-                setStatus("error")
-            },
+            function(error) { setStatus("error") },
             {timeout: 3000}
         )
     }, [])
 
-    return { dataResult, status }
+    function searchByCity() {
+        return fetchWeatherData(52.52, 13.41)
+    }
+
+    return { dataResult, status, searchByCity }
 }
