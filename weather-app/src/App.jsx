@@ -20,6 +20,11 @@ function App() {
     <div className="max-w-full min-h-screen border-box">
       {status === "no-results" 
         ? <>
+          <div>
+            <img src="" alt="logo" />
+            <Units />
+          </div>
+          <h2>How's the sky looking today?</h2>
           <SearchBar searchByCity={searchByCity} />
           <p>No search results found!</p>
           </>
@@ -28,6 +33,7 @@ function App() {
             <img src="" alt="logo" />
             <Units />
           </div>
+          <h1>How's the sky looking today?</h1>
           <SearchBar searchByCity={searchByCity} />
           {status === "success" && <MainWeather data={dataResult} />}
           {status === "success" && <WeatherMetrics data={dataResult} />}
