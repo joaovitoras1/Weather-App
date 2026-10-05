@@ -10,7 +10,7 @@ function SearchBar({searchByCity}) {
         <div>
             <form onSubmit={(e) => {
                 e.preventDefault();
-                searchByCity()
+                searchByCity(search)
                 }}>
                 <img src={iconSearch} alt="Search-Icon" />
                 <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search for a place..." />
