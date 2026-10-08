@@ -24,6 +24,7 @@ export default function useWeather() {
     async function fetchWeatherData(latitude, longitude) {
                 setStatus("loading")
                 setLastCoords({latitude, longitude})
+
                 const result = await searchData(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,precipitation&timezone=America%2FSao_Paulo`)
 
                 if (result) {
@@ -41,6 +42,7 @@ export default function useWeather() {
         if(geoResult.results) {
             const firstResult = geoResult.results[0]
             setLastCoords({latitude: firstResult.latitude, longitude: firstResult.longitude})
+
             const weatherResult = await searchData(`https://api.open-meteo.com/v1/forecast?latitude=${firstResult.latitude}&longitude=${firstResult.longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,precipitation&timezone=America%2FSao_Paulo`)
 
             if(weatherResult) {
@@ -64,12 +66,24 @@ export default function useWeather() {
             {timeout: 3000}
         )
     }, [])
-
     
+    async function selectSuggestion(suggestion) {
+        setLastCoords({latitude: suggestion.latitude, longitude: suggestion.longitude})
+
+        const suggestionSearch = await searchData(`https://api.open-meteo.com/v1/forecast?latitude=${suggestion.latitude}&longitude=${suggestion.longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,precipitation&timezone=America%2FSao_Paulo`)
+        
+        if(suggestionSearch) {
+            const searchResult = {...suggestionSearch, city: `${suggestion.name}, ${suggestion.country}`}
+            setStatus("success")
+            setDataResult(searchResult)
+        } else {
+            setStatus("error")
+        }
+    }
 
     function retryFetch() {
         return fetchWeatherData(lastCoords.latitude, lastCoords.longitude)
     }
 
-    return { dataResult, status, searchByCity, retryFetch }
+    return { dataResult, status, searchByCity, retryFetch, selectSuggestion }
 }

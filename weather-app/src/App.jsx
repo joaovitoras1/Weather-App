@@ -1,5 +1,7 @@
 import './App.css'
 
+import Logo from '@/assets/logo/logo.svg'
+
 import MainWeather from '@/components/MainWeather/MainWeather.jsx'
 import WeatherMetrics from '@/components/WeatherMetrics/WeatherMetrics.jsx'
 import SearchBar from '@/components/SearchBar/SearchBar.jsx'
@@ -12,7 +14,7 @@ import ErrorWindow from '@/components/ErrorWindow/ErrorWindow.jsx'
 import useWeather from '@/hooks/useWeather'
 
 function App() {
-  const {dataResult, status, searchByCity, retryFetch} = useWeather()
+  const {dataResult, status, searchByCity, retryFetch, selectSuggestion} = useWeather()
 
   if(status === "error") return <ErrorWindow retry={retryFetch}/>
 
@@ -21,7 +23,7 @@ function App() {
       {status === "no-results" 
         ? <>
           <div>
-            <img src="" alt="logo" />
+            <img src={Logo} alt="logo" />
             <Units />
           </div>
           <h2>How's the sky looking today?</h2>
@@ -30,11 +32,11 @@ function App() {
           </>
         : <>
           <div>
-            <img src="" alt="logo" />
+            <img src={Logo} alt="logo" />
             <Units />
           </div>
           <h1>How's the sky looking today?</h1>
-          <SearchBar searchByCity={searchByCity} />
+          <SearchBar searchByCity={searchByCity} selectSuggestion={selectSuggestion} />
           {status === "success" && <MainWeather data={dataResult} />}
           {status === "success" && <WeatherMetrics data={dataResult} />}
           {status === "success" && <DailyForecast data={dataResult} />}
