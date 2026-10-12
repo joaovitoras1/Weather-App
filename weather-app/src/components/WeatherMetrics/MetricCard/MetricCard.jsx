@@ -1,13 +1,5 @@
-function MetricCard({label, value}) {
-
-    const units = {
-        "Feels Like": "°",
-        "Humidity": "%",
-        "Wind": " km/h",
-        "Precipitation": " mm"
-    }
-
-    const formattedValue = parseInt(value) + units[label]
+function MetricCard({label, value, unitName}) {
+    const formattedValue = parseInt(value) + unitName
 
     return (
         <div>

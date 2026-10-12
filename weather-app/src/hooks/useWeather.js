@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function useWeather() {
+export default function useWeather(units) {
     const [dataResult, setDataResult] = useState()
     const [status, setStatus] = useState("idle")
     const [lastCoords, setLastCoords] = useState()
@@ -25,7 +25,7 @@ export default function useWeather() {
                 setStatus("loading")
                 setLastCoords({latitude, longitude})
 
-                const result = await searchData(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,precipitation&timezone=America%2FSao_Paulo`)
+                const result = await searchData(buildURL(latitude, longitude, units))
 
                 if (result) {
                     setStatus("success")
@@ -43,7 +43,7 @@ export default function useWeather() {
             const firstResult = geoResult.results[0]
             setLastCoords({latitude: firstResult.latitude, longitude: firstResult.longitude})
 
-            const weatherResult = await searchData(`https://api.open-meteo.com/v1/forecast?latitude=${firstResult.latitude}&longitude=${firstResult.longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,precipitation&timezone=America%2FSao_Paulo`)
+            const weatherResult = await searchData(buildURL(firstResult.latitude, firstResult.longitude, units))
 
             if(weatherResult) {
                 const location = {...weatherResult, city: `${firstResult.name}, ${firstResult.country}`}
@@ -70,7 +70,7 @@ export default function useWeather() {
     async function selectSuggestion(suggestion) {
         setLastCoords({latitude: suggestion.latitude, longitude: suggestion.longitude})
 
-        const suggestionSearch = await searchData(`https://api.open-meteo.com/v1/forecast?latitude=${suggestion.latitude}&longitude=${suggestion.longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,precipitation&timezone=America%2FSao_Paulo`)
+        const suggestionSearch = await searchData(buildURL(suggestion.latitude, suggestion.longitude, units))
         
         if(suggestionSearch) {
             const searchResult = {...suggestionSearch, city: `${suggestion.name}, ${suggestion.country}`}
@@ -81,9 +81,17 @@ export default function useWeather() {
         }
     }
 
+    function buildURL(latitude, longitude, units) {
+        return `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,precipitation&timezone=America%2FSao_Paulo&temperature_unit=${units.temperature}&wind_speed_unit=${units.wind}&precipitation_unit=${units.precipitation}`
+    }
+
     function retryFetch() {
         return fetchWeatherData(lastCoords.latitude, lastCoords.longitude)
     }
+
+    useEffect(() => {
+        if(lastCoords) retryFetch()
+    }, [units])
 
     return { dataResult, status, searchByCity, retryFetch, selectSuggestion }
 }

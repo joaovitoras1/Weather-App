@@ -6,20 +6,10 @@ import iconUnits from '@/assets/icons/icon-units.svg'
 import iconDropdown from '@/assets/icons/icon-dropdown.svg'
 import iconCheckmark from '@/assets/icons/icon-checkmark.svg'
 
-function Units() {
-
+function Units({units, changeUnit, changeToMetric, changeToImperial}) {
     const [open, setOpen] = useState(false)
 
-    const [units, setUnits] = useState({temperature: "celsius", wind: "kmh", precipitation: "mm"})
-
-    function changeUnit(category, newUnit) {
-        setUnits({...units, [category]: newUnit})
-    }
-
-    function changeToImperial() { setUnits({temperature: "fahrenheit", wind: "mph", precipitation: "in"}) }
-    function changeToMetric() { setUnits({temperature: "celsius", wind: "kmh", precipitation: "mm"}) }
-
-    const isImperial = units.temperature === "fahrenheit" && units.wind === "mph" && units.precipitation === "in"
+    const isImperial = units.temperature === "fahrenheit" && units.wind === "mph" && units.precipitation === "inch"
     
     const buttonText = isImperial ? "Switch to Metric" : "Switch to Imperial"
 
@@ -60,9 +50,9 @@ function Units() {
                         Millimeters (mm)
                         {units.precipitation === "mm" && <img src={iconCheckmark} alt="selected" />}
                     </button>
-                    <button onClick={() => changeUnit("precipitation", "in")}>
+                    <button onClick={() => changeUnit("precipitation", "inch")}>
                         Inches (in)
-                        {units.precipitation === "in" && <img src={iconCheckmark} alt="selected" />}
+                        {units.precipitation === "inch" && <img src={iconCheckmark} alt="selected" />}
                     </button>
                 </div>
                 </Dropdown>}
