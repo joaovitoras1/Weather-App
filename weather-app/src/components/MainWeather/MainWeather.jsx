@@ -15,7 +15,7 @@ function MainWeather({data}) {
     return (
         <div>
             <div>
-                <h2>{data.city}</h2>
+                <h2>{data.city ? data.city : "Current Location"}</h2>
                 <p>{date.toLocaleDateString("en-US", options)}</p>
             </div>
             <div>
