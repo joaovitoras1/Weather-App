@@ -21,15 +21,16 @@ export default function useWeather(units) {
         }
     }
 
-    async function fetchWeatherData(latitude, longitude) {
+    async function fetchWeatherData(latitude, longitude, city) {
                 setStatus("loading")
-                setLastCoords({latitude, longitude})
+                setLastCoords({latitude, longitude, city})
 
                 const result = await searchData(buildURL(latitude, longitude, units))
 
                 if (result) {
+                    const fetchResult = {...result, city}
                     setStatus("success")
-                    setDataResult(result)
+                    setDataResult(fetchResult)
                 } else {
                     setStatus("error")
                 }
@@ -39,21 +40,15 @@ export default function useWeather(units) {
         setStatus("loading")
         const geoResult = await searchData(`https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=1&language=en&format=json`)
         
-        if(geoResult.results) {
-            const firstResult = geoResult.results[0]
-            setLastCoords({latitude: firstResult.latitude, longitude: firstResult.longitude})
-
-            const weatherResult = await searchData(buildURL(firstResult.latitude, firstResult.longitude, units))
-
-            if(weatherResult) {
-                const location = {...weatherResult, city: `${firstResult.name}, ${firstResult.country}`}
-                setStatus("success")
-                setDataResult(location)
+        if(geoResult) {
+            if(geoResult.results) {
+                const firstResult = geoResult.results[0]
+                return fetchWeatherData(firstResult.latitude, firstResult.longitude, `${firstResult.name}, ${firstResult.country}`)
             } else {
-                setStatus("error")
+                setStatus("no-results")
             }
         } else {
-            setStatus("no-results")
+            setStatus("error")
         }
     }
 
@@ -68,17 +63,7 @@ export default function useWeather(units) {
     }, [])
     
     async function selectSuggestion(suggestion) {
-        setLastCoords({latitude: suggestion.latitude, longitude: suggestion.longitude})
-
-        const suggestionSearch = await searchData(buildURL(suggestion.latitude, suggestion.longitude, units))
-        
-        if(suggestionSearch) {
-            const searchResult = {...suggestionSearch, city: `${suggestion.name}, ${suggestion.country}`}
-            setStatus("success")
-            setDataResult(searchResult)
-        } else {
-            setStatus("error")
-        }
+        return fetchWeatherData(suggestion.latitude, suggestion.longitude, `${suggestion.name}, ${suggestion.country}`)
     }
 
     function buildURL(latitude, longitude, units) {
@@ -86,7 +71,7 @@ export default function useWeather(units) {
     }
 
     function retryFetch() {
-        return fetchWeatherData(lastCoords.latitude, lastCoords.longitude)
+        return fetchWeatherData(lastCoords.latitude, lastCoords.longitude, lastCoords.city)
     }
 
     useEffect(() => {
