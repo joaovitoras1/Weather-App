@@ -57,7 +57,7 @@ export default function useWeather(units) {
             function(position) {
                 fetchWeatherData(position.coords.latitude, position.coords.longitude)
             },
-            function(error) { setStatus("error") },
+            function(error) { setStatus("no-location") },
             {timeout: 3000}
         )
     }, [])
