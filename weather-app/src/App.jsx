@@ -34,15 +34,15 @@ function App() {
   }
   
   return (
-    <div className="max-w-full min-h-screen border-box">
-      <div>
-        <img src={Logo} alt="logo" />
+    <div className="max-w-full min-h-screen border-box grid justify-center place-content-baseline py-8 bg-Neutral-900">
+      <div className="flex justify-between items-center pb-4">
+        <img src={Logo} alt="logo" className="w-50" />
         <Units units={units} changeUnit={changeUnit} changeToMetric={changeToMetric} changeToImperial={changeToImperial} />
       </div>
-      <h1>How's the sky looking today?</h1>
+      <h1 className="font-bricolage-grotesque text-Neutral-0 font-bold text-2xl pt-4 pb-6">How's the sky looking today?</h1>
       <SearchBar searchByCity={searchByCity} selectSuggestion={selectSuggestion} />
-
-      {messageStatus[status] && <p>{messageStatus[status]}</p>}
+      
+      {messageStatus[status] && <p className="text-Neutral-200 pt-4 text-center">{messageStatus[status]}</p>}
         
       <div>
         {status === "success" && <MainWeather data={dataResult} />}
