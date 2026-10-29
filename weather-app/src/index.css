@@ -21,3 +21,8 @@
     --color-Blue-500: hsl(233, 67%, 56%);
     --color-Blue-700: hsl(248, 70%, 36%);
 }
+
+@theme {
+    --mobile-version: url(@/assets/background/bg-today-small.svg);
+    --desktop-version: url(@/assets/background/bg-today-large.svg);
+}
