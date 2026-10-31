@@ -24,8 +24,8 @@ function WeatherMetrics({data, units}) {
     ]
 
     return (
-        <div>
-            <ul>
+        <div className="py-4">
+            <ul className="grid grid-cols-2 gap-4">
                 {metricInfo.map((metric) => {
                     return <li key={metric.label}>
                         <MetricCard label={metric.label} value={metric.value} unitName={metric.weatherUnit}/>

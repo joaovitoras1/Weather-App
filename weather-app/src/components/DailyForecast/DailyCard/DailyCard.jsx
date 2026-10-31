@@ -8,12 +8,12 @@ function DailyCard({time, dailyCode, minTemp, maxTemp}) {
     const dayWeatherIcon = getWeatherIcon(dailyCode)
 
     return (
-        <div>
-            <h2>{formattedDay}</h2>
-            <img src={dayWeatherIcon.icon} alt={dayWeatherIcon.description} />
-            <div>
-                <p>{parseInt(minTemp)}°</p>
-                <p>{parseInt(maxTemp)}°</p>
+        <div className="bg-Neutral-800 rounded-xl flex justify-evenly items-center">
+            <h2 className="text-Neutral-0 font-medium">{formattedDay}</h2>
+            <img src={dayWeatherIcon.icon} alt={dayWeatherIcon.description} className="size-15" />
+            <div className="font-medium">
+                <p className="text-Neutral-0">{parseInt(maxTemp)}°</p>
+                <p className="text-Neutral-200">{parseInt(minTemp)}°</p>
             </div>
         </div>
     )

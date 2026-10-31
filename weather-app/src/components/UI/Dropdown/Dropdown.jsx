@@ -1,6 +1,6 @@
-function Dropdown({children}) {
+function Dropdown({children, className = ''}) {
     return (
-        <div>{children}</div>
+        <div className={`bg-Neutral-800 p-2 rounded-lg absolute mt-2 z-10 ${className}`}>{children}</div>
     )
 }
 
