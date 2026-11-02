@@ -8,12 +8,12 @@ function HourlyCard({currentHour, hourCode, hourTemp}) {
     const hourWeatherIcon = getWeatherIcon(hourCode)
 
     return (
-        <div>
-            <div>
-                <img src={hourWeatherIcon.icon} alt={hourWeatherIcon.description} />
+        <div className="bg-Neutral-700 text-Neutral-0 rounded-md flex items-center justify-between px-3">
+            <div className="flex items-center">
+                <img src={hourWeatherIcon.icon} alt={hourWeatherIcon.description} className="size-13"/>
                 <h2>{formattedHour}</h2>
             </div>
-            <p>{parseInt(hourTemp)}°</p>
+            <p className="pr-2">{parseInt(hourTemp)}°</p>
         </div>
     )
 }
