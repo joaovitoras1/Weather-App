@@ -12,6 +12,8 @@ import HourlyForecast from '@/components/HourlyForecast/HourlyForecast.jsx'
 
 import ErrorWindow from '@/components/ErrorWindow/ErrorWindow.jsx'
 
+import MainWeatherSkeleton from '@/components/UI/Skeleton/MainWeatherSkeleton.jsx'
+
 import useWeather from '@/hooks/useWeather'
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
     "no-results": "No search result found!",
     "no-location": "We couldn’t get your location. Search for a city."
   }
+
+  const isLoading = status === "idle" || status === "loading"
   
   return (
     <div className="max-w-full min-h-screen border-box grid justify-center place-content-baseline py-8 bg-Neutral-900">
@@ -45,8 +49,9 @@ function App() {
       {messageStatus[status] && <p className="text-Neutral-200 pt-4 text-center">{messageStatus[status]}</p>}
         
       <div>
+        {isLoading && <MainWeatherSkeleton />}
         {status === "success" && <MainWeather data={dataResult} />}
-        {status === "success" && <WeatherMetrics data={dataResult} units={units} />}
+        {(isLoading || status === "success") && <WeatherMetrics data={dataResult} units={units} isLoading={isLoading} />}
         {status === "success" && <DailyForecast data={dataResult} />}
         {status === "success" && <HourlyForecast data={dataResult} />}
       </div>

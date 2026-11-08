@@ -1,10 +1,10 @@
-function MetricCard({label, value, unitName}) {
+function MetricCard({label, value, unitName, isLoading = false}) {
     const formattedValue = parseInt(value) + unitName
 
     return (
         <div className="bg-Neutral-800 rounded-xl py-3 pl-4 flex flex-col">
             <h2 className="text-Neutral-200 text-sm font-medium">{label}</h2>
-            <p className="text-Neutral-0 text-2xl">{formattedValue}</p>
+            <p className="text-Neutral-0 text-2xl" aria-hidden={isLoading}>{isLoading ? "—" : formattedValue}</p>
         </div>
     )
 }
