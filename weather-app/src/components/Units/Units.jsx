@@ -5,7 +5,6 @@ import UnitOption from '@/components/Units/UnitOption/UnitOption.jsx'
 
 import iconUnits from '@/assets/icons/icon-units.svg'
 import iconDropdown from '@/assets/icons/icon-dropdown.svg'
-import iconCheckmark from '@/assets/icons/icon-checkmark.svg'
 
 function Units({units, changeUnit, changeToMetric, changeToImperial}) {
     const [open, setOpen] = useState(false)
