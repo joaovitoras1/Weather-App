@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import Dropdown from '@/components/UI/Dropdown/Dropdown.jsx'
-import UnitOption from '@/components/Units/UnitOption/UnitOption.jsx'
+import Dropdown from '@/components/UI/Dropdown/Dropdown'
+import UnitOption from '@/components/Units/UnitOption/UnitOption'
 
 import iconUnits from '@/assets/icons/icon-units.svg'
 import iconDropdown from '@/assets/icons/icon-dropdown.svg'

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import iconSearch from '@/assets/icons/icon-search.svg'
 
-import Dropdown from '@/components/UI/Dropdown/Dropdown.jsx'
+import Dropdown from '@/components/UI/Dropdown/Dropdown'
 
 function SearchBar({searchByCity, selectSuggestion}) {
 
