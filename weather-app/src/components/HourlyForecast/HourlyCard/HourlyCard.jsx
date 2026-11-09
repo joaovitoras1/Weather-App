@@ -1,4 +1,4 @@
-import { getWeatherIcon } from '@/utils/getWeatherIcon.js'
+import { getWeatherIcon } from '@/utils/getWeatherIcon'
 
 function HourlyCard({currentHour, hourCode, hourTemp}) {
 

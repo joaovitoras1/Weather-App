@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import HourlyCard from '@/components/HourlyForecast/HourlyCard/HourlyCard.jsx'
-import Dropdown from '@/components/UI/Dropdown/Dropdown.jsx'
+import HourlyCard from '@/components/HourlyForecast/HourlyCard/HourlyCard'
+import Dropdown from '@/components/UI/Dropdown/Dropdown'
 import iconDropdown from '@/assets/icons/icon-dropdown.svg'
 
 function HourlyForecast({data}) {
