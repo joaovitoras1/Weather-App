@@ -1,4 +1,4 @@
-import { getWeatherIcon } from '@/utils/getWeatherIcon.js'
+import { getWeatherIcon } from '@/utils/getWeatherIcon'
 
 function DailyCard({time, dailyCode, minTemp, maxTemp}) {
 

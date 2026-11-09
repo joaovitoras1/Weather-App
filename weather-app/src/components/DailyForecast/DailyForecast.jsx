@@ -1,4 +1,4 @@
-import DailyCard from '@/components/DailyForecast/DailyCard/DailyCard.jsx'
+import DailyCard from '@/components/DailyForecast/DailyCard/DailyCard'
 
 function DailyForecast({data}) {
     const { time, weather_code, temperature_2m_max, temperature_2m_min } = data.daily
