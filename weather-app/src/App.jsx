@@ -3,16 +3,16 @@ import { useState } from 'react';
 
 import Logo from '@/assets/logo/logo.svg'
 
-import MainWeather from '@/components/MainWeather/MainWeather.jsx'
-import WeatherMetrics from '@/components/WeatherMetrics/WeatherMetrics.jsx'
-import SearchBar from '@/components/SearchBar/SearchBar.jsx'
-import Units from '@/components/Units/Units.jsx'
-import DailyForecast from '@/components/DailyForecast/DailyForecast.jsx'
-import HourlyForecast from '@/components/HourlyForecast/HourlyForecast.jsx'
+import MainWeather from '@/components/MainWeather/MainWeather'
+import WeatherMetrics from '@/components/WeatherMetrics/WeatherMetrics'
+import SearchBar from '@/components/SearchBar/SearchBar'
+import Units from '@/components/Units/Units'
+import DailyForecast from '@/components/DailyForecast/DailyForecast'
+import HourlyForecast from '@/components/HourlyForecast/HourlyForecast'
 
-import ErrorWindow from '@/components/ErrorWindow/ErrorWindow.jsx'
+import ErrorWindow from '@/components/ErrorWindow/ErrorWindow'
 
-import MainWeatherSkeleton from '@/components/UI/Skeleton/MainWeatherSkeleton.jsx'
+import MainWeatherSkeleton from '@/components/UI/Skeleton/MainWeatherSkeleton'
 
 import useWeather from '@/hooks/useWeather'
 
