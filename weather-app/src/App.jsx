@@ -14,6 +14,7 @@ import ErrorWindow from '@/components/ErrorWindow/ErrorWindow'
 
 import MainWeatherSkeleton from '@/components/UI/Skeleton/MainWeatherSkeleton'
 import DailyForecastSkeleton from '@/components/UI/Skeleton/DailyForecastSkeleton'
+import HourlyForecastSkeleton from '@/components/UI/Skeleton/HourlyForecastSkeleton'
 
 import useWeather from '@/hooks/useWeather'
 
@@ -55,6 +56,7 @@ function App() {
         {(isLoading || status === "success") && <WeatherMetrics data={dataResult} units={units} isLoading={isLoading} />}
         {isLoading && <DailyForecastSkeleton />}
         {status === "success" && <DailyForecast data={dataResult} />}
+        {isLoading && <HourlyForecastSkeleton />}
         {status === "success" && <HourlyForecast data={dataResult} />}
       </div>
     </div>
