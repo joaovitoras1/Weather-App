@@ -50,7 +50,7 @@ function HourlyForecast({data}) {
                         })}
                     </Dropdown>}
                 </div>
-                <ul className="overflow-y-scroll max-h-129 scrollbar-thin scrollbar-thumb-Neutral-600">
+                <ul aria-label={`Hourly forecast for ${day}`} tabIndex={0} className="max-h-129 overflow-y-auto scrollbar-thin scrollbar-thumb-Neutral-600 focus-within:rounded-md focus-within:outline-Neutral-0 focus-within:outline-1.5">
                     {filteredHours.map((hour) => {
                         return <li key={hour.hour} className="py-1.5">
                             <HourlyCard currentHour={hour.hour} hourCode={hour.code} hourTemp={hour.temperature} />
