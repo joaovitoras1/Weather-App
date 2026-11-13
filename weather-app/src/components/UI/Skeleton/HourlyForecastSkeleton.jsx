@@ -5,7 +5,7 @@ function HourlyForecastSkeleton() {
 
     return (
         <div className="pt-7">
-            <div className="bg-Neutral-800 rounded-xl py-3 px-5">
+            <div className="bg-Neutral-800 rounded-xl py-3 px-5 h-150">
                 <div className="pb-1.5">
                     <div className="flex justify-between items-center">
                         <h2 className="text-Neutral-0 font-medium pt-2 pb-2">Hourly forecast</h2>
@@ -15,7 +15,7 @@ function HourlyForecastSkeleton() {
                         </div>
                     </div>
                 </div>
-                <ul aria-hidden="true" className="flex flex-col gap-3 pt-2 pb-1.5">
+                <ul aria-hidden="true" className="flex flex-col gap-3 pt-2 pb-1.5 overflow-hidden max-h-130">
                     {cards.map((_, index) => {
                         return <li key={index} className="bg-Neutral-700 py-6.5 px-3 rounded-md"></li>
                     })}

@@ -35,7 +35,7 @@ function HourlyForecast({data}) {
 
     return (
         <div className="pt-5">
-            <div className="bg-Neutral-800 rounded-xl py-3 px-5">
+            <div className="bg-Neutral-800 rounded-xl py-3 px-5 h-150">
                 <div className="pb-2 relative">
                     <div className="flex justify-between items-center">
                         <h2 className="text-Neutral-0 font-medium pt-2 pb-2">Hourly forecast</h2>
@@ -50,7 +50,7 @@ function HourlyForecast({data}) {
                         })}
                     </Dropdown>}
                 </div>
-                <ul>
+                <ul className="overflow-y-scroll max-h-129 scrollbar-thin scrollbar-thumb-Neutral-600">
                     {filteredHours.map((hour) => {
                         return <li key={hour.hour} className="py-1.5">
                             <HourlyCard currentHour={hour.hour} hourCode={hour.code} hourTemp={hour.temperature} />
