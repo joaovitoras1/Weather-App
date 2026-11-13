@@ -15,7 +15,7 @@ function HourlyForecastSkeleton() {
                         </div>
                     </div>
                 </div>
-                <ul aria-hidden="true" className="flex flex-col gap-3 pt-2 pb-1.5 overflow-hidden max-h-130">
+                <ul aria-hidden="true" className="flex flex-col gap-3 pt-2 pb-1.5 overflow-y-auto scrollbar-thin scrollbar-thumb-Neutral-600 max-h-129">
                     {cards.map((_, index) => {
                         return <li key={index} className="bg-Neutral-700 py-6.5 px-3 rounded-md"></li>
                     })}
